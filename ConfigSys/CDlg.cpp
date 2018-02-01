@@ -38,6 +38,9 @@ BEGIN_MESSAGE_MAP(CDlg, CDialogEx)
 	ON_EN_KILLFOCUS(IDC_ED_CLIENT_NAME, &CDlg::OnEnKillfocusEdClientName)
 	ON_EN_KILLFOCUS(IDC_ED_SAS_NAME, &CDlg::OnEnKillfocusEdSasName)
 	ON_EN_KILLFOCUS(IDC_ED_DOOR_NB, &CDlg::OnEnKillfocusEdDoorNb)
+	ON_BN_CLICKED(IDC_CHK_AUTO, &CDlg::OnBnClickedChkAuto)
+	ON_BN_CLICKED(IDC_CHK_SAUTO, &CDlg::OnBnClickedChkSauto)
+	ON_BN_CLICKED(IDC_CHK_MANUAL, &CDlg::OnBnClickedChkManual)
 END_MESSAGE_MAP()
 
 
@@ -147,7 +150,7 @@ void CDlg::OnBnClickedBtNew()
 		if (mIsBitsSet(m_nStatus, ST_CLIENT_NAME_OK) && mIsBitsSet(m_nStatus, ST_SAS_NAME_OK) && mIsBitsSet(m_nStatus, ST_DOOR_NB_OK))
 		{
 			mBitsClr(m_nStatus, ST_INSERTION);
-			m_Config.SetConf(m_ClientName, m_SASName, m_DoorNb);
+			m_Config.SetConf(m_ClientName, m_SASName, m_DoorNb, m_ChkAuto);
 			SetDlgItemText(IDC_BT_NEW, _T("New"));
 			m_pBT_LOAD->EnableWindow();
 			SetDlgItemText(IDC_BT_LOAD, _T("Load"));
@@ -233,6 +236,13 @@ void CDlg::OnBnClickedBtLoad()
 				m_Config.Print(m_param);
 			}
 		}
+
+		//m_pED_CLIENT_NAME->EnableWindow();
+		//m_pED_SAS_NAME->EnableWindow();
+		m_pED_DOOR_NB->EnableWindow();
+		m_pCHK_AUTO->EnableWindow();
+		m_pCHK_SAUTO->EnableWindow();
+		m_pCHK_MANUAL->EnableWindow();
 	}
 }
 
@@ -295,5 +305,38 @@ void CDlg::OnEnKillfocusEdDoorNb()
 		m_pED_DOOR_NB->GetWindowTextA(m_DoorNb);
 		if (m_DoorNb.IsEmpty())return;
 		mBitsSet(m_nStatus, ST_DOOR_NB_OK);
+	}
+}
+
+
+void CDlg::OnBnClickedChkAuto()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	if (mIsBitsSet(m_nStatus, ST_INSERTION))
+	{
+		m_pCHK_AUTO->GetWindowTextA(m_ChkAuto);
+		if (m_DoorNb.IsEmpty())return;
+	}
+}
+
+
+void CDlg::OnBnClickedChkSauto()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	if (mIsBitsSet(m_nStatus, ST_INSERTION))
+	{
+		m_pCHK_SAUTO->GetWindowTextA(m_ChkSAuto);
+		if (m_DoorNb.IsEmpty())return;
+	}
+}
+
+
+void CDlg::OnBnClickedChkManual()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	if (mIsBitsSet(m_nStatus, ST_INSERTION))
+	{
+		m_pCHK_MANUAL->GetWindowTextA(m_ChkManual);
+		if (m_DoorNb.IsEmpty())return;
 	}
 }

@@ -63,8 +63,9 @@ private:
 	CString				m_ClientName;
 	CString				m_SASName;
 	CString				m_DoorNb;
-
-
+	CString				m_ChkAuto;
+	CString				m_ChkSAuto;
+	CString				m_ChkManual;
 
 protected:
 
@@ -81,4 +82,7 @@ public:
 	afx_msg void OnEnKillfocusEdClientName();
 	afx_msg void OnEnKillfocusEdSasName();
 	afx_msg void OnEnKillfocusEdDoorNb();
+	afx_msg void OnBnClickedChkAuto();
+	afx_msg void OnBnClickedChkSauto();
+	afx_msg void OnBnClickedChkManual();
 };
