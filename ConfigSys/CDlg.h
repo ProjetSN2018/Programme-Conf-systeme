@@ -1,7 +1,3 @@
-
-// CDlg.h : fichier d'en-tête
-//
-
 #pragma once
 #include "CConfig.h"
 
@@ -12,18 +8,18 @@ class CDlg : public CDialogEx
 public:
 	CDlg(CWnd* pParent = NULL);	// constructeur standard
 
-// Données de boîte de dialogue
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_CONFIGSYS_DIALOG };
 #endif
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// Prise en charge de DDX/DDV
+	virtual void DoDataExchange(CDataExchange* pDX);
 
 
 // Implémentation
 protected:
 	HICON m_hIcon;
+
 public :
 	enum t_status {
 		NONE = 0,
@@ -31,12 +27,13 @@ public :
 		ST_INSERTION = 0x000001,
 		ST_CLIENT_NAME_OK = 0x000002,
 		ST_SAS_NAME_OK = 0x000004,
-		ST_DOOR_NB_OK = 0x000008
-
+		ST_DOOR_NB_OK = 0x000008,
+		ST_MODE_AUTO_OK = 0x000010,
+		ST_MODE_SAUTO_OK = 0x000020,
+		ST_MODE_MANUAL_OK = 0x000040
 	};
 
 private:
-
 	CConfig				m_Config;
 
 	CConfig::t_param	m_param;
@@ -58,17 +55,15 @@ private:
 	CCheckListBox*		m_pCHK_SAUTO;
 	CCheckListBox*		m_pCHK_MANUAL;
 
-
 	int					m_nStatus;
 	CString				m_ClientName;
 	CString				m_SASName;
 	CString				m_DoorNb;
-	CString				m_ChkAuto;
-	CString				m_ChkSAuto;
-	CString				m_ChkManual;
+	CString				m_ModeAuto;
+	CString				m_ModeSauto;
+	CString				m_ModeManual;
 
 protected:
-
 	// Fonctions générées de la table des messages
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();

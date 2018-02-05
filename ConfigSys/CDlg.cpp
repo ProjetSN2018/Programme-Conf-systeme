@@ -1,7 +1,3 @@
-
-// CDlg.cpp : fichier d'implémentation
-//
-
 #include "stdafx.h"
 #include "ConfigSys.h"
 #include "CDlg.h"
@@ -11,14 +7,9 @@
 #define new DEBUG_NEW
 #endif
 
-
-#define	ST_CDLG_LOAD_DONE		0x00000001
-
 // boîte de dialogue CDlg
 
-
-
-CDlg::CDlg(CWnd* pParent /*=NULL*/)
+CDlg::CDlg(CWnd* pParent)
 	: CDialogEx(IDD_CONFIGSYS_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -46,18 +37,15 @@ END_MESSAGE_MAP()
 
 // gestionnaires de messages pour CDlg
 
+//Initialisation
 BOOL CDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// Définir l'icône de cette boîte de dialogue.  L'infrastructure effectue cela automatiquement
-	//  lorsque la fenêtre principale de l'application n'est pas une boîte de dialogue
-	SetIcon(m_hIcon, TRUE);			// Définir une grande icône
-	SetIcon(m_hIcon, FALSE);		// Définir une petite icône
+	SetIcon(m_hIcon, TRUE);			
+	SetIcon(m_hIcon, FALSE);		
 
-	// TODO: ajoutez ici une initialisation supplémentaire
-
-	//
+	/////////////////////////////////////////
 	m_pST_CLIENT_NAME = (CStatic*)GetDlgItem(IDC_ST_CIENT_NAME);
 	m_pST_SAS_NAME = (CStatic*)GetDlgItem(IDC_ST_SAS_NAME);
 	m_pST_DOOR_NB = (CStatic*)GetDlgItem(IDC_ST_DOOR_NB);
@@ -88,7 +76,10 @@ BOOL CDlg::OnInitDialog()
 	m_param = {
 		m_pED_CLIENT_NAME,
 		m_pED_SAS_NAME,
-		m_pED_DOOR_NB
+		m_pED_DOOR_NB,
+		m_pCHK_AUTO,
+		m_pCHK_SAUTO,
+		m_pCHK_MANUAL
 	};
 
 	m_nStatus = 0;
@@ -98,22 +89,17 @@ BOOL CDlg::OnInitDialog()
 
 void CDlg::OnCancel()
 {
-	// TODO: ajoutez ici votre code spécialisé et/ou l'appel de la classe de base
-	//delete m_pConfigs; m_pConfigs = nullptr;
-
+	//Verification si l'utilisateur veut quitter
 	int quit = MessageBox(_T("Do you want to quit ?"), _T("EXIT"), MB_ICONQUESTION | MB_YESNO);
+	//Si oui, on quitte
 	if(quit == 6) CDialogEx::OnCancel();
 }
-
-// Si vous ajoutez un bouton Réduire à votre boîte de dialogue, vous devez utiliser le code ci-dessous
-//  pour dessiner l'icône.  Pour les applications MFC utilisant le modèle Document/Vue,
-//  cela est fait automatiquement par l'infrastructure.
 
 void CDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // contexte de périphérique pour la peinture
+		CPaintDC dc(this);
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
@@ -122,8 +108,8 @@ void CDlg::OnPaint()
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
 		GetClientRect(&rect);
-		int x = (rect.Width() - cxIcon + 1) / 2;
-		int y = (rect.Height() - cyIcon + 1) / 2;
+		int x = (rect.Width() - cxIcon);
+		int y = (rect.Height() - cyIcon);
 
 		// Dessiner l'icône
 		dc.DrawIcon(x, y, m_hIcon);
@@ -134,8 +120,6 @@ void CDlg::OnPaint()
 	}
 }
 
-// Le système appelle cette fonction pour obtenir le curseur à afficher lorsque l'utilisateur fait glisser
-//  la fenêtre réduite.
 HCURSOR CDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -144,25 +128,27 @@ HCURSOR CDlg::OnQueryDragIcon()
 //----- NEW -----//
 void CDlg::OnBnClickedBtNew()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	//Déjà en insertion = add
 	if (mIsBitsSet(m_nStatus, ST_INSERTION))
 	{
-		if (mIsBitsSet(m_nStatus, ST_CLIENT_NAME_OK) && mIsBitsSet(m_nStatus, ST_SAS_NAME_OK) && mIsBitsSet(m_nStatus, ST_DOOR_NB_OK))
+		//Si tous les ch sont remplient
+		if (mIsBitsSet(m_nStatus, ST_CLIENT_NAME_OK) && mIsBitsSet(m_nStatus, ST_SAS_NAME_OK) && mIsBitsSet(m_nStatus, ST_DOOR_NB_OK) && ((mIsBitsSet(m_nStatus, ST_MODE_AUTO_OK)) || (mIsBitsSet(m_nStatus, ST_MODE_SAUTO_OK)) || (mIsBitsSet(m_nStatus, ST_MODE_MANUAL_OK))))
 		{
 			mBitsClr(m_nStatus, ST_INSERTION);
-			m_Config.SetConf(m_ClientName, m_SASName, m_DoorNb, m_ChkAuto);
+
+			//Set les paramètres écrit par l'utilisateur dans l'objet CConfig
+			m_Config.SetConf(m_ClientName, m_SASName, m_DoorNb, m_ModeAuto,m_ModeSauto,m_ModeManual);
 			SetDlgItemText(IDC_BT_NEW, _T("New"));
-			m_pBT_LOAD->EnableWindow();
+			//m_pBT_LOAD->EnableWindow();
 			SetDlgItemText(IDC_BT_LOAD, _T("Load"));
 			m_pED_CLIENT_NAME->EnableWindow(false);
 			m_pED_SAS_NAME->EnableWindow(false);
 			m_pBT_SAVE->EnableWindow();
 		}
-		else
-		{
-			MessageBox(_T("Missing parameter(s) !"), _T("ERROR !!!"), MB_ICONERROR);
-		}
+		else MessageBox(_T("Missing parameter(s) !"), _T("ERROR !!!"), MB_ICONERROR);
 	}
+
+	//Passage en mode insertion
 	else
 	{
 		mBitsSet(m_nStatus, ST_INSERTION);
@@ -173,6 +159,8 @@ void CDlg::OnBnClickedBtNew()
 		SetDlgItemText(IDC_BT_NEW, _T("Add"));
 		m_pBT_LOAD->EnableWindow();
 		SetDlgItemText(IDC_BT_LOAD, _T("Cancel"));
+
+		//Activation des fenêtre pour entrer les paramèrtres
 		m_pED_CLIENT_NAME->EnableWindow();
 		m_pED_SAS_NAME->EnableWindow();
 		m_pED_DOOR_NB->EnableWindow();
@@ -185,33 +173,37 @@ void CDlg::OnBnClickedBtNew()
 //----- LOAD -----//
 void CDlg::OnBnClickedBtLoad()
 {
+	//Si on est en mode insertion = cancel
 	if (mIsBitsSet(m_nStatus, ST_INSERTION))
 	{
-		//Si on est en mode insertion
 		mBitsClr(m_nStatus, ST_INSERTION);
 
+		//Clear les fenêtres
 		SetDlgItemText(IDC_ED_CLIENT_NAME, _T(""));
 		SetDlgItemText(IDC_ED_SAS_NAME, _T(""));
 		SetDlgItemText(IDC_ED_DOOR_NB, _T(""));
 
+		//m_pCHK_AUTO->SetCheck(IDC_CHK_AUTO, BST_UNCHECKED);
+		m_pBT_LOAD->EnableWindow(false);
+
+		//On désactive les fenêtres
 		m_pBT_SAVE->EnableWindow(false);
 
 		m_pED_CLIENT_NAME->EnableWindow(false);
 		m_pED_SAS_NAME->EnableWindow(false);
 		m_pED_DOOR_NB->EnableWindow(false);
-
-	/*	m_pCHK_AUTO->EnableWindow(false);
+		m_pCHK_AUTO->EnableWindow(false);
 		m_pCHK_SAUTO->EnableWindow(false);
-		m_pCHK_MANUAL->EnableWindow(false);*/
+		m_pCHK_MANUAL->EnableWindow(false);
 
 
 		SetDlgItemText(IDC_BT_NEW, "New");
 		SetDlgItemText(IDC_BT_LOAD, "Load");
 	}
 
+	//Sinon
 	else
 	{
-		// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
 		CString openFilter(_T("Config File (*.conf)|*.conf||")); //Filtre d'extension des fichiers
 		CFileDialog fileOpenDialog(
 			TRUE,		//Boite de dialogue "Ouvrir"
@@ -221,38 +213,40 @@ void CDlg::OnBnClickedBtLoad()
 			openFilter,
 			AfxGetMainWnd()
 		);
-		mBitsClr(m_nStatus, ST_CDLG_LOAD_DONE);
 		if (fileOpenDialog.DoModal() == IDOK)
 		{//Si un nom de fichier a été sélectionné....
 			fstream file;
 			file.open(fileOpenDialog.GetPathName().GetString(), fstream::in);
 			if (file.is_open())
 			{
+				//On écrit ce qu'il y a dans le fichier dans l'objet
 				do {
 					file >> m_Config;
 				} while (!file.eof());
 
 				file.close();
+
+				//On afffcihe
 				m_Config.Print(m_param);
 			}
+			//On active les fenêtres
+			m_pED_CLIENT_NAME->EnableWindow();
+			m_pED_SAS_NAME->EnableWindow();
+			m_pED_DOOR_NB->EnableWindow();
+			m_pCHK_AUTO->EnableWindow();
+			m_pCHK_SAUTO->EnableWindow();
+			m_pCHK_MANUAL->EnableWindow();
+			m_pBT_SAVE->EnableWindow();
 		}
-
-		//m_pED_CLIENT_NAME->EnableWindow();
-		//m_pED_SAS_NAME->EnableWindow();
-		m_pED_DOOR_NB->EnableWindow();
-		m_pCHK_AUTO->EnableWindow();
-		m_pCHK_SAUTO->EnableWindow();
-		m_pCHK_MANUAL->EnableWindow();
 	}
 }
 
 //----- SAVE -----//
 void CDlg::OnBnClickedBtSave()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	CString openFilter(_T("Config File (*.conf)|*.conf||")); //Filtre d'extension des fichiers  
+	CString openFilter(_T("Config File (*.conf)|*.conf||"));
 	CFileDialog fileOpenDialog(
-		FALSE,  //Boite de dialogue "Enregister sous..."  
+		FALSE,
 		_T("conf"),
 		NULL,
 		OFN_HIDEREADONLY,
@@ -265,78 +259,56 @@ void CDlg::OnBnClickedBtSave()
 		file.open(fileOpenDialog.GetPathName().GetString(), fstream::out);
 		if (file.is_open())
 		{
+			//On écrit de l'objet vers le fichier
 			file << m_Config;
-
 			file.close();
 		}
 	}
 }
 
-
 void CDlg::OnEnKillfocusEdClientName()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	if (mIsBitsSet(m_nStatus, ST_INSERTION))
-	{
-		m_pED_CLIENT_NAME->GetWindowTextA(m_ClientName);
-		if (m_ClientName.IsEmpty())return;
-		mBitsSet(m_nStatus, ST_CLIENT_NAME_OK);
-	}
+	m_pED_CLIENT_NAME->GetWindowTextA(m_ClientName);
+	if (m_ClientName.IsEmpty())return;
+	mBitsSet(m_nStatus, ST_CLIENT_NAME_OK);
 }
 
 
 void CDlg::OnEnKillfocusEdSasName()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	if (mIsBitsSet(m_nStatus, ST_INSERTION))
-	{
-		m_pED_SAS_NAME->GetWindowTextA(m_SASName);
-		if (m_SASName.IsEmpty())return;
-		mBitsSet(m_nStatus, ST_SAS_NAME_OK);
-	}
+	m_pED_SAS_NAME->GetWindowTextA(m_SASName);
+	if (m_SASName.IsEmpty())return;
+	mBitsSet(m_nStatus, ST_SAS_NAME_OK);
 }
 
 
 void CDlg::OnEnKillfocusEdDoorNb()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	if (mIsBitsSet(m_nStatus, ST_INSERTION))
-	{
-		m_pED_DOOR_NB->GetWindowTextA(m_DoorNb);
-		if (m_DoorNb.IsEmpty())return;
-		mBitsSet(m_nStatus, ST_DOOR_NB_OK);
-	}
+	m_pED_DOOR_NB->GetWindowTextA(m_DoorNb);
+	if (m_DoorNb.IsEmpty())return;
+	mBitsSet(m_nStatus, ST_DOOR_NB_OK);
 }
 
 
 void CDlg::OnBnClickedChkAuto()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	if (mIsBitsSet(m_nStatus, ST_INSERTION))
-	{
-		m_pCHK_AUTO->GetWindowTextA(m_ChkAuto);
-		if (m_DoorNb.IsEmpty())return;
-	}
+	m_pCHK_AUTO->GetWindowTextA(m_DoorNb);
+	if (m_DoorNb.IsEmpty())return;
+	mBitsSet(m_nStatus, ST_MODE_AUTO_OK);
 }
 
 
 void CDlg::OnBnClickedChkSauto()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	if (mIsBitsSet(m_nStatus, ST_INSERTION))
-	{
-		m_pCHK_SAUTO->GetWindowTextA(m_ChkSAuto);
-		if (m_DoorNb.IsEmpty())return;
-	}
+	m_pCHK_SAUTO->GetWindowTextA(m_ModeSauto);
+	if (m_DoorNb.IsEmpty())return;
+	mBitsSet(m_nStatus, ST_MODE_SAUTO_OK);
 }
 
 
 void CDlg::OnBnClickedChkManual()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	if (mIsBitsSet(m_nStatus, ST_INSERTION))
-	{
-		m_pCHK_MANUAL->GetWindowTextA(m_ChkManual);
-		if (m_DoorNb.IsEmpty())return;
-	}
+	m_pCHK_MANUAL->GetWindowTextA(m_ModeManual);
+	if (m_DoorNb.IsEmpty())return;
+	mBitsSet(m_nStatus, ST_MODE_MANUAL_OK);
 }

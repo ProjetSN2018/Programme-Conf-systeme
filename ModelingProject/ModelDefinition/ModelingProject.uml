@@ -153,7 +153,7 @@
             Id="6e774f1c-5e9a-4c63-9864-660f4e28c044"
             isDerived="false"
             sourceEndRoleName="CDlg"
-            targetEndRoleName="m_pConfigs"
+            targetEndRoleName="m_Config"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -177,7 +177,7 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="881207d5-75e4-45fa-ac59-ee641f15fca0"
-                  name="m_pConfigs"
+                  name="m_Config"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -438,25 +438,6 @@
             </type_NamedElement>
           </property>
           <property
-            Id="e39afeef-0f04-4f05-bda7-37cdc3ee3d81"
-            name="m_pConfigs"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c50e1d57-58bc-4444-8db9-c827c4bbafe7"
-                LastKnownName="vector&lt;CConfig&gt;*"
-                LastKnownLocation="ModelingProject.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="0ce9eef6-589d-480b-a4d5-670899380524"
             name="m_param"
             visibility="Private"
@@ -472,6 +453,158 @@
               <undefinedTypeMoniker
                 Id="373f4a5a-8965-4092-b868-aa44035b8899"
                 LastKnownName="CConfig::t_param"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3d98cf81-0e6c-4e7f-a948-39cc80a4dc0f"
+            name="m_Config"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="8e9d45bb-a4ac-4d97-9005-4247e48831e6"
+                LastKnownName="CConfig"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="d6abdc45-6fb3-4984-98a4-ccf27e201812"
+            name="m_nStatus"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="fbbe558a-6e2e-46ba-b062-21a095c80c1f"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f238d726-377b-413c-bfb6-d00b66355d60"
+            name="m_ClientName"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fc0baaeb-c689-4ce7-8741-f46a1eb03bd3"
+            name="m_SASName"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="eb531794-63b0-4d4d-9abd-bc179bb9c083"
+            name="m_DoorNb"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0d8a7f91-9a34-480b-9b23-c9ee63bc9b6d"
+            name="m_ModeAuto"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b25047f2-837d-488e-9f69-855cccd3b765"
+            name="m_ModeSauto"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0df4522d-a6fa-4072-9380-db08b02d88f0"
+            name="m_ModeManual"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
                 LastKnownLocation="ModelingProject.uml" />
             </type_NamedElement>
           </property>
@@ -699,6 +832,144 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="31af79ac-acd6-44f4-af92-64662b6e7475"
+            name="OnEnKillfocusEdClientName"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="73c4c46c-e0f8-4e25-b6d8-36d749c42da7"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6cba1fb2-6480-47e0-bca8-610a709d4ea2"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5f97a8ab-91da-4879-a945-84b5b67a6fb0"
+            name="OnEnKillfocusEdSasName"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="39098de4-6cd0-4344-b337-a3794bd0bd70"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6cba1fb2-6480-47e0-bca8-610a709d4ea2"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="b97d151f-fc5f-4698-8e8b-bd9c6f3b9b94"
+            name="OnEnKillfocusEdDoorNb"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7ea9f17e-f8e4-443a-8b94-7cf588c2fc54"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6cba1fb2-6480-47e0-bca8-610a709d4ea2"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="258802dd-e4cc-480a-84cf-9d6d0b8ee39f"
+            name="OnBnClickedChkAuto"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f56b23ac-651d-47ef-8a87-5061675cbff3"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6cba1fb2-6480-47e0-bca8-610a709d4ea2"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="1774e67f-faf0-4754-8d2c-11fb45393f11"
+            name="OnBnClickedChkSauto"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="259cede8-7553-45bc-91a9-43ec9060ad41"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6cba1fb2-6480-47e0-bca8-610a709d4ea2"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4c5f74cd-d896-43d6-a55a-e43c63a607be"
+            name="OnBnClickedChkManual"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="71db7387-c2a7-4e07-9a6d-94631c51bd90"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6cba1fb2-6480-47e0-bca8-610a709d4ea2"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -796,6 +1067,63 @@
           <property
             Id="6f9a1670-6dd2-420d-90c9-21b705baf435"
             name="m_strDoorNb"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0ab60880-4f4a-40cb-a42d-a4db1ba34d20"
+            name="m_strModeAuto"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="85a8ff5d-7dd0-47ae-a16a-4afb936a1021"
+            name="m_strModeSauto"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="473c0d4b-7f31-4985-8161-d9e3534d16c8"
+                LastKnownName="CString"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="9bda855a-f5f7-452e-b149-73a8e7da9ace"
+            name="m_strModeManual"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -983,6 +1311,107 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="e5813863-c6a6-45f5-8304-8586507ca15b"
+            name="SetConf"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c9f9efb8-81c1-4318-b76c-827c8f6a4047"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6cba1fb2-6480-47e0-bca8-610a709d4ea2"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ade1d696-f897-4db0-8b33-029a532a753b"
+                  name="ClientName"
+                  direction="In">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="3f28930d-1c54-4b01-8c18-db080fa3e3fa"
+                      LastKnownName="CString&amp;"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="701213dc-6161-4de3-baf1-956866844299"
+                  name="SASName"
+                  direction="In">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="3f28930d-1c54-4b01-8c18-db080fa3e3fa"
+                      LastKnownName="CString&amp;"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="86e5a93a-e47e-4b66-a23d-1c82407b733d"
+                  name="DoorNb"
+                  direction="In">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="3f28930d-1c54-4b01-8c18-db080fa3e3fa"
+                      LastKnownName="CString&amp;"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a06d6ab5-9fa5-46da-ab4e-a2abd650a1eb"
+                  name="ChkAuto"
+                  direction="In">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="3f28930d-1c54-4b01-8c18-db080fa3e3fa"
+                      LastKnownName="CString&amp;"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="30449dae-2447-4600-b824-abc29df929bc"
+                  name="ChkSAuto"
+                  direction="In">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="3f28930d-1c54-4b01-8c18-db080fa3e3fa"
+                      LastKnownName="CString&amp;"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="836f5253-07c3-4d2c-a3b4-9012ec6eab17"
+                  name="ChkManual"
+                  direction="In">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="3f28930d-1c54-4b01-8c18-db080fa3e3fa"
+                      LastKnownName="CString&amp;"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -1091,6 +1520,154 @@
       <undefinedType
         Id="636ca059-250c-4d7c-a8d8-e9a1c40063fb"
         name="const CConfig&amp;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="3f28930d-1c54-4b01-8c18-db080fa3e3fa"
+        name="CString&amp;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="585febbc-347f-4823-baad-1fc578c65f81"
+        name="t_status"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="50b6fdf9-03c4-45b7-9980-3578116f088e"
+            isDerived="false"
+            sourceEndRoleName="t_status"
+            targetEndRoleName="CDlg"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="7d3ab8f5-fbdd-4793-861d-bebec0872d39"
+              LastKnownName="CDlg"
+              LastKnownLocation="ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ea6a5e81-8ced-44a8-b26e-9b50a7480aed"
+                  name="t_status"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1cfb0a22-eb3b-4d7a-9f2a-cb8b8a067622"
+                  name="CDlg"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="b66660aa-786c-4180-bd7d-1d840cc17355"
+            name="NONE" />
+          <enumerationLiteral
+            Id="53cc3ae3-898b-4836-b11e-4a9e1dd5c804"
+            name="ALL">
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="94f62afd-d1b9-45ad-a6a7-c3605e501916"
+                name="TextTemplateBindings"
+                profile="TextTemplateBindings">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4e967790-7659-43f7-84d5-2f043a2d75ee">
+                    <propertyInstance
+                      Id="aaa8f5c8-8890-4b6e-8e30-41525c5c676d"
+                      name="Alias" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1891a4c8-df20-4516-a350-89d86f4e3ff9">
+                    <propertyInstance
+                      Id="0e298636-5336-4412-8f41-611324c4996f"
+                      name="TemplateFilePath" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="27a71a85-37c0-4c8b-83fd-a25f9245506a">
+                    <propertyInstance
+                      Id="831ac7ec-1d68-4b4c-9f59-ea2d51481507"
+                      name="ProjectPath" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d831a2ef-5ee1-4931-b0b0-8820865a0168">
+                    <propertyInstance
+                      Id="4b106e6d-0ca6-4f53-a12d-66f46f609f65"
+                      name="TargetDirectory" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0a7b353f-9a42-4e4a-a75c-683f9014ebb8">
+                    <propertyInstance
+                      Id="ec62b9e8-d94a-44d5-b5fc-3138705dee8f"
+                      name="TargetName" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4638a91a-4108-4288-b9c4-c4ce4e37a2b3">
+                    <propertyInstance
+                      Id="2300d447-30c9-4d5a-8cd0-9f65238685c9"
+                      name="Overwrite" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="10e7ae77-a240-41a1-b1f3-9e145bbfad68">
+                    <propertyInstance
+                      Id="148f5a36-c52c-4b85-b7e2-d1345c9b7a6e"
+                      name="Parameters" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="abca934b-9840-4d4b-97ef-48a6c66f5b7a"
+            name="ST_INSERTION" />
+          <enumerationLiteral
+            Id="bc56f1a8-c81b-4434-9707-7e6da767f724"
+            name="ST_CLIENT_NAME_OK" />
+          <enumerationLiteral
+            Id="28a29d52-c9ac-4037-a10f-610462f902be"
+            name="ST_SAS_NAME_OK" />
+          <enumerationLiteral
+            Id="0e21c559-1bb3-49f1-9ac0-a0edc4dfe961"
+            name="ST_DOOR_NB_OK" />
+          <enumerationLiteral
+            Id="b148725f-125f-4fef-842f-137937fc110d"
+            name="ST_MODE_AUTO_OK" />
+          <enumerationLiteral
+            Id="a0db9de1-fdd3-473a-9e7f-6be33c904251"
+            name="ST_MODE_SAUTO_OK" />
+          <enumerationLiteral
+            Id="90cdb8ea-50d1-4fa2-b8e6-3939c5c5b4c9"
+            name="ST_MODE_MANUAL_OK" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="29c3aac4-5288-444c-ac80-3afef381af93"
+        LastKnownName="Package1"
+        LastKnownLocation="Package_1710.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b2d2aaf0-a464-4763-a52a-1be5c91c1f8a"
+        name="Interface2"
+        isAbstract="false"
+        isLeaf="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

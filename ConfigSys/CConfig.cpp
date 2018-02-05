@@ -10,12 +10,14 @@ CConfig::~CConfig()
 }
 
 //Set
-void CConfig::SetConf(CString & ClientName, CString & SASName, CString & DoorNb, CString& ChkAuto)
+void CConfig::SetConf(CString & ClientName, CString & SASName, CString & DoorNb, CString& ChkAuto, CString& ChkSAuto, CString& ChkManual)
 {
 	m_strClientName = ClientName;
 	m_strSASName = SASName;
 	m_strDoorNb = DoorNb;
-	m_strChkAuto = ChkAuto;
+	m_strModeAuto = ChkAuto;
+	m_strModeSauto = ChkSAuto;
+	m_strModeManual = ChkManual;
 }
 
 //Print pour le load
@@ -23,11 +25,9 @@ void CConfig::Print(t_param & pParam) const
 {
 	pParam.pEDClientName->SetWindowTextA(m_strClientName);
 	pParam.pEDSasName->SetWindowTextA(m_strSASName);
+	pParam.pEDDoorNb->SetWindowTextA(m_strDoorNb);
+	//pParam.pChkAuto->GetCheck(IDC_CHK_AUTO);
 }
-
-
-
-
 
 
 
@@ -37,47 +37,31 @@ void CConfig::Print(t_param & pParam) const
 fstream & operator >> (fstream & is, CConfig & config)
 {
 	// TODO: insérer une instruction return ici
-	/*char recBuff[BUFSIZ * 2];
-	CString buff;
-	CString data;
-
-	is.getline(recBuff, BUFSIZ * 2);
-	buff = recBuff;
-
-	if (recBuff[0] == '#') return;
-
-	else
-	{
-		data = buff.Mid(1);
-		config.m_strClientName = data;
-	}*/
 
 	//config.m_strClientName = _T("Oui");
-
+	int i = 0;
+	CString tabParam[NB_PARAM];
 	char line[BUFSIZ * 2];
-	is.getline(line, BUFSIZ * 2);
-	char* pch = strtok(line, "#");
-	config.m_strClientName = pch;
-	/*pch = strtok(NULL, "#");
-	config.m_strSASName = pch;*/
-	/*pch = strtok(NULL, ";");
-	record.m_duration = pch;
-	pch = strtok(NULL, ";");
-	record.m_station = pch;
-	pch = strtok(NULL, ";");
-	record.m_statut = pch;
-	pch = strtok(NULL, ";");
-	record.m_course = pch;*/
-
-	return is;
-
-
-	///////////////////////////////////////////////////////////
-	// ----- Il faut récupérer les données du fichier ----- //
-	//////////////////////////////////////////////////////////
-
-	//config.m_strClientName = ??
+	CString buf;
 	
+	//Tant que le buffer n'est pas remplie
+	while (tabParam[NB_PARAM-1].IsEmpty())
+	{
+		is.getline(line, BUFSIZ * 2, '\r');
+		//On regarde le premier caractère
+		//Si ce n'est pas '#'
+		if (CString(line).Find('#') == -1)
+		{
+			//On écrit la ligne dans le tableau à l'index i
+			tabParam[i] = line;
+			i++;
+		}
+	}
+
+	config.m_strClientName = tabParam[PARAM_CLIENT_NAME];
+	config.m_strSASName = tabParam[PARAM_SAS_NAME];
+	config.m_strDoorNb = tabParam[PARAM_DOOR_NB];
+
 	return is;
 }
 
@@ -89,7 +73,13 @@ fstream & operator<<(fstream & os, const CConfig & config)
 		"# Client name :\r" << config.m_strClientName <<
 		"\r\n# SAS name :\r" << config.m_strSASName <<
 		"\r\n# Door nb :\r" << config.m_strDoorNb <<
-		"\r\n# Mode :\r" << config.m_strChkAuto;
+		"\r\n# Mode :\r";
+	if (config.m_strModeAuto.IsEmpty());
+	else os << config.m_strModeAuto << ";";
+	if (config.m_strModeSauto.IsEmpty());
+	else os << config.m_strModeSauto << ";";
+	if (config.m_strModeManual.IsEmpty());
+	else os << config.m_strModeManual << ";";
 
 	return os;
 }
